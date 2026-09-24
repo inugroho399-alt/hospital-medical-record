@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard - Hospital Medical Record Information System">
+    <title>Dashboard - HMRIS</title>
+    <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="../../assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Logo -->
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <i class="fas fa-hospital"></i>
+                <span>HMR<span class="logo-highlight">IS</span></span>
+            </a>
+        </div>
+
+        <!-- Role Badge -->
+        <div class="role-badge-wrapper">
+            <div class="role-badge" id="roleBadge">
+                <i class="fas fa-user-circle"></i>
+                <span id="roleBadgeText">Role</span>
+            </div>
+        </div>
+
+        <!-- Navigation Menu (Dinamis berdasarkan Role) -->
+        <nav class="sidebar-nav">
+            <ul class="nav-list" id="navList">
+                <!-- Menu akan di-generate oleh JavaScript -->
+            </ul>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="btnLogoutSidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <div class="sidebar-copyright">
+                <small>&copy; 2024 HMRIS v1.0</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-wrapper">
+        <!-- ==================== TOP NAVBAR ==================== -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari pasien, dokter, rekam medis...">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <!-- Notifications -->
+                <button class="navbar-icon-btn" id="btnNotification" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge" id="notifBadge">3</span>
+                </button>
+
+                <!-- Messages -->
+                <button class="navbar-icon-btn" aria-label="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
+
+                <!-- User Profile -->
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">User Name</span>
+                        <span class="user-role" id="userRole">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <!-- User Dropdown -->
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 id="dropdownName">User Name</h4>
+                                <p id="dropdownEmail">user@email.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="../pengaturan.html?section=profile" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profil Saya</span>
+                        </a>
+                        <a href="../pengaturan.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Pengaturan</span>
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Bantuan</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogoutDropdown">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <div class="page-header-left">
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                    <p class="page-subtitle" id="pageSubtitle">Selamat datang kembali!</p>
+                </div>
+                <div class="page-header-right">
+                    <div class="date-display">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="currentDate">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Banner -->
+            <section class="welcome-banner glass-card fade-in">
+                <div class="welcome-content">
+                    <h2 id="welcomeTitle">Selamat Datang, <span class="text-gradient">User</span>! 👋</h2>
+                    <p id="welcomeDesc">Semoga hari Anda menyenangkan. Berikut ringkasan aktivitas sistem hari ini.</p>
+                    <button class="btn btn-primary btn-sm" id="btnGetStarted">
+                        <i class="fas fa-rocket"></i>
+                        <span>Mulai Bekerja</span>
+                    </button>
+                </div>
+                <div class="welcome-illustration">
+                    <i class="fas fa-hospital-user"></i>
+                </div>
+            </section>
+
+            <!-- Statistics Cards -->
+            <section class="stats-section fade-in">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-line"></i>
+                        Statistik
+                    </h3>
+                    <select class="filter-select">
+                        <option>Hari Ini</option>
+                        <option>Minggu Ini</option>
+                        <option>Bulan Ini</option>
+                    </select>
+                </div>
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats akan di-generate oleh JavaScript -->
+                </div>
+            </section>
+
+            <!-- Quick Actions & Calendar Row -->
+            <section class="two-column-section fade-in">
+                <!-- Quick Actions -->
+                <div class="quick-actions-panel glass-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <i class="fas fa-bolt"></i>
+                            Aksi Cepat
+                        </h3>
+                    </div>
+                    <div class="quick-actions-grid" id="quickActionsGrid">
+                        <!-- Actions akan di-generate oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="calendar-panel glass-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <i class="fas fa-calendar-alt"></i>
+                            Kalender
+                        </h3>
+                        <div class="calendar-nav">
+                            <button class="cal-btn" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                            <span class="cal-month" id="calMonth">Januari 2024</span>
+                            <button class="cal-btn" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar akan di-generate oleh JavaScript -->
+                    </div>
+                    <div class="upcoming-events">
+                        <h4 class="events-title">Agenda Mendatang</h4>
+                        <div class="events-list" id="eventsList">
+                            <!-- Events akan di-generate oleh JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chart & Activity Row -->
+            <section class="two-column-section fade-in">
+                <!-- Chart Placeholder -->
+                <div class="chart-panel glass-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Statistik Grafik
+                        </h3>
+                        <div class="chart-legend">
+                            <span class="legend-item"><i class="dot dot-blue"></i> Kunjungan</span>
+                            <span class="legend-item"><i class="dot dot-green"></i> Pasien Baru</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <svg class="bar-chart" id="barChart" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet">
+                            <!-- Chart akan di-generate oleh JavaScript -->
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-panel glass-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <i class="fas fa-history"></i>
+                            Aktivitas Terbaru
+                        </h3>
+                        <a href="#" class="view-all">Lihat Semua</a>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activities akan di-generate oleh JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="dashboard-footer">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-box glass-card">
+            <div class="modal-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <h3 class="modal-title">Konfirmasi Logout</h3>
+            <p class="modal-message">Apakah Anda yakin ingin keluar dari sistem?</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline btn-sm" id="btnCancelLogout">Batal</button>
+                <button class="btn btn-primary btn-sm" id="btnConfirmLogout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Ya, Logout</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <!-- Global Navbar Interactivity -->
+    <script src="../../assets/js/navbar.js"></script>
+</body>
+</html>

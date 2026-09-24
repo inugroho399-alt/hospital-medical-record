@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Laboratorium - Hospital Medical Record Information System">
+    <title>Laboratorium - HMRIS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/laboratorium.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard/index.html" class="sidebar-logo">
+                <i class="fas fa-hospital"></i>
+                <span>HMR<span class="logo-highlight">IS</span></span>
+            </a>
+        </div>
+
+        <div class="role-badge-wrapper">
+            <div class="role-badge" id="roleBadge">
+                <i class="fas fa-user-circle"></i>
+                <span id="roleBadgeText">Role</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list" id="navList"></ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="btnLogoutSidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <div class="sidebar-copyright">
+                <small>&copy; 2024 HMRIS v1.0</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-wrapper">
+        <!-- ==================== TOP NAVBAR ==================== -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari pasien, dokter, rekam medis...">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <button class="navbar-icon-btn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+
+                <button class="navbar-icon-btn" aria-label="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">User Name</span>
+                        <span class="user-role" id="userRole">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 id="dropdownName">User Name</h4>
+                                <p id="dropdownEmail">user@email.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="pengaturan.html?section=profile" class="dropdown-item"><i class="fas fa-user-circle"></i><span>Profil Saya</span></a>
+                        <a href="pengaturan.html" class="dropdown-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogoutDropdown">
+                            <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <div class="page-header-left">
+                    <nav class="breadcrumb">
+                        <a href="dashboard/index.html"><i class="fas fa-home"></i> Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="active">Laboratorium</span>
+                    </nav>
+                    <h1 class="page-title">Laboratorium</h1>
+                    <p class="page-subtitle">Kelola pemeriksaan laboratorium dan hasil tes pasien</p>
+                </div>
+                <div class="page-header-right">
+                    <button class="btn btn-primary" id="btnAddLab">
+                        <i class="fas fa-flask"></i>
+                        <span>Tambah Pemeriksaan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <section class="stats-section fade-in">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0077B6, #00B4D8)">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Pemeriksaan</div>
+                            <div class="stat-value" id="statTotal">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #06D6A0, #2EC4B6)">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Hari Ini</div>
+                            <div class="stat-value" id="statToday">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #7B2CBF, #9D4EDD)">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Hasil Selesai</div>
+                            <div class="stat-value" id="statCompleted">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #FF6B35, #FFB347)">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Menunggu Hasil</div>
+                            <div class="stat-value" id="statPending">0</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Table -->
+            <section class="table-panel glass-card fade-in">
+                <div class="panel-toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-box-table">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Cari kode, pasien, dokter, jenis...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="filterStatus" class="filter-select">
+                                <option value="">Semua Status</option>
+                                <option value="Menunggu">Menunggu</option>
+                                <option value="Diproses">Diproses</option>
+                                <option value="Selesai">Selesai</option>
+                            </select>
+                            <select id="filterJenis" class="filter-select">
+                                <option value="">Semua Jenis</option>
+                                <option value="Darah Lengkap">Darah Lengkap</option>
+                                <option value="Gula Darah">Gula Darah</option>
+                                <option value="Kolesterol">Kolesterol</option>
+                                <option value="Asam Urat">Asam Urat</option>
+                                <option value="Urine">Urine</option>
+                                <option value="Fungsi Hati">Fungsi Hati</option>
+                                <option value="Fungsi Ginjal">Fungsi Ginjal</option>
+                                <option value="Covid">Covid</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn-icon" id="btnExportExcel" title="Export Excel"><i class="fas fa-file-excel"></i></button>
+                        <button class="btn-icon" id="btnExportPDF" title="Export PDF"><i class="fas fa-file-pdf"></i></button>
+                        <button class="btn-icon" id="btnPrint" title="Print"><i class="fas fa-print"></i></button>
+                        <button class="btn-icon" id="btnRefresh" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="tanggal">Tanggal <i class="fas fa-sort"></i></th>
+                                <th class="sortable" data-sort="kode">Kode <i class="fas fa-sort"></i></th>
+                                <th>Pasien</th>
+                                <th>No RM</th>
+                                <th>Dokter Pengirim</th>
+                                <th>Jenis Pemeriksaan</th>
+                                <th>Status</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-flask"></i>
+                        <h3>Tidak Ada Data</h3>
+                        <p>Belum ada data laboratorium yang sesuai dengan filter Anda</p>
+                    </div>
+                </div>
+
+                <div class="table-footer">
+                    <div class="table-info">
+                        Menampilkan <span id="showingStart">0</span>-<span id="showingEnd">0</span> dari <span id="showingTotal">0</span> data
+                    </div>
+                    <div class="pagination" id="pagination"></div>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Add/Edit Modal -->
+    <div class="modal-overlay" id="labModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">
+                    <i class="fas fa-flask"></i>
+                    <span>Tambah Pemeriksaan Laboratorium</span>
+                </h3>
+                <button class="modal-close" id="btnCloseModal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="labForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-section">
+                        <h4 class="section-title-form"><i class="fas fa-info-circle"></i> Informasi Pemeriksaan</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Kode Pemeriksaan <span class="required">*</span></label>
+                                <div class="input-with-icon readonly">
+                                    <i class="fas fa-hashtag"></i>
+                                    <input type="text" id="kodeLab" readonly>
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tanggal Pemeriksaan <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <input type="date" id="tanggal" required>
+                                </div>
+                                <span class="error-message" id="error-tanggal"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pilih Pasien <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user-injured"></i>
+                                    <select id="idPasien" required>
+                                        <option value="">-- Pilih Pasien --</option>
+                                    </select>
+                                </div>
+                                <span class="error-message" id="error-idPasien"></span>
+                                <div class="patient-preview" id="patientPreview"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>No RM</label>
+                                <div class="input-with-icon readonly">
+                                    <i class="fas fa-id-card"></i>
+                                    <input type="text" id="noRM" readonly placeholder="Otomatis">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Dokter Pengirim <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user-md"></i>
+                                    <select id="idDokter" required>
+                                        <option value="">-- Pilih Dokter --</option>
+                                    </select>
+                                </div>
+                                <span class="error-message" id="error-idDokter"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-toggle-on"></i>
+                                    <select id="status" required>
+                                        <option value="Menunggu">Menunggu</option>
+                                        <option value="Diproses">Diproses</option>
+                                        <option value="Selesai">Selesai</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title-form"><i class="fas fa-vial"></i> Detail Pemeriksaan</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Jenis Pemeriksaan <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-flask"></i>
+                                    <select id="jenisPemeriksaan" required>
+                                        <option value="">-- Pilih Jenis --</option>
+                                        <option value="Darah Lengkap">Darah Lengkap</option>
+                                        <option value="Gula Darah">Gula Darah</option>
+                                        <option value="Kolesterol">Kolesterol</option>
+                                        <option value="Asam Urat">Asam Urat</option>
+                                        <option value="Urine">Urine</option>
+                                        <option value="Fungsi Hati">Fungsi Hati</option>
+                                        <option value="Fungsi Ginjal">Fungsi Ginjal</option>
+                                        <option value="Covid">Covid</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <span class="error-message" id="error-jenisPemeriksaan"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nilai Normal</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <input type="text" id="nilaiNormal" placeholder="Otomatis berdasarkan jenis">
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Hasil Pemeriksaan <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-file-medical-alt"></i>
+                                    <input type="text" id="hasil" placeholder="Masukkan hasil pemeriksaan" required>
+                                </div>
+                                <span class="error-message" id="error-hasil"></span>
+                                <div class="result-status" id="resultStatus"></div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Keterangan</label>
+                                <div class="input-with-icon textarea-wrapper">
+                                    <i class="fas fa-align-left"></i>
+                                    <textarea id="keterangan" rows="3" placeholder="Keterangan tambahan / catatan lab"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="btnCancelForm">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmitForm">
+                        <i class="fas fa-save"></i>
+                        <span>Simpan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-flask"></i> Detail Hasil Lab</h3>
+                <div class="modal-header-actions">
+                    <button type="button" class="btn btn-sm btn-outline" id="btnPrintLab">
+                        <i class="fas fa-print"></i> Cetak
+                    </button>
+                    <button class="modal-close" id="btnCloseDetail"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="modal-body" id="detailBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btnCloseDetail2">Tutup</button>
+                <button type="button" class="btn btn-primary" id="btnEditFromDetail">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box modal-small">
+            <div class="modal-icon danger"><i class="fas fa-trash-alt"></i></div>
+            <h3 class="modal-title">Konfirmasi Hapus</h3>
+            <p class="modal-message">Hapus pemeriksaan <strong id="deleteLabCode"></strong>?</p>
+            <p class="modal-warning">Data yang dihapus tidak dapat dikembalikan!</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="btnCancelDelete">Batal</button>
+                <button class="btn btn-danger" id="btnConfirmDelete">
+                    <i class="fas fa-trash-alt"></i> Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/laboratorium.js"></script>
+    <!-- Global Navbar Interactivity -->
+    <script src="../assets/js/navbar.js"></script>
+</body>
+</html>

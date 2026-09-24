@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Janji Temu - Hospital Medical Record Information System">
+    <title>Janji Temu - HMRIS</title>
+    <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/janji.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard/index.html" class="sidebar-logo">
+                <i class="fas fa-hospital"></i>
+                <span>HMR<span class="logo-highlight">IS</span></span>
+            </a>
+        </div>
+
+        <div class="role-badge-wrapper">
+            <div class="role-badge" id="roleBadge">
+                <i class="fas fa-user-circle"></i>
+                <span id="roleBadgeText">Role</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list" id="navList"></ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="btnLogoutSidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <div class="sidebar-copyright">
+                <small>&copy; 2024 HMRIS v1.0</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-wrapper">
+        <!-- ==================== TOP NAVBAR ==================== -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari pasien, dokter, rekam medis...">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <button class="navbar-icon-btn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+
+                <button class="navbar-icon-btn" aria-label="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">User Name</span>
+                        <span class="user-role" id="userRole">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 id="dropdownName">User Name</h4>
+                                <p id="dropdownEmail">user@email.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="pengaturan.html?section=profile" class="dropdown-item"><i class="fas fa-user-circle"></i><span>Profil Saya</span></a>
+                        <a href="pengaturan.html" class="dropdown-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogoutDropdown">
+                            <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <div class="page-header-left">
+                    <nav class="breadcrumb">
+                        <a href="dashboard/index.html"><i class="fas fa-home"></i> Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="active">Janji Temu</span>
+                    </nav>
+                    <h1 class="page-title">Janji Temu</h1>
+                    <p class="page-subtitle">Kelola jadwal janji temu antara pasien dan dokter</p>
+                </div>
+                <div class="page-header-right">
+                    <button class="btn btn-primary" id="btnAddAppointment">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Buat Janji Temu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <section class="stats-section fade-in">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0077B6, #00B4D8)">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Janji</div>
+                            <div class="stat-value" id="statTotal">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #06D6A0, #2EC4B6)">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Hari Ini</div>
+                            <div class="stat-value" id="statToday">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #FFD166, #FFB347)">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Menunggu</div>
+                            <div class="stat-value" id="statPending">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #7B2CBF, #9D4EDD)">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Selesai</div>
+                            <div class="stat-value" id="statCompleted">0</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar + Table Layout -->
+            <section class="appointment-layout fade-in">
+                <!-- Mini Calendar -->
+                <div class="calendar-panel glass-card">
+                    <div class="panel-header">
+                        <h3 class="panel-title"><i class="fas fa-calendar-alt"></i> Kalender Janji</h3>
+                        <div class="calendar-nav">
+                            <button class="cal-btn" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                            <span class="cal-month" id="calMonth">Januari 2024</span>
+                            <button class="cal-btn" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    <div class="calendar-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot today"></span> Hari Ini
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot has-appointment"></span> Ada Janji
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot selected"></span> Dipilih
+                        </div>
+                    </div>
+                    <button class="btn btn-outline btn-block btn-sm" id="btnClearDateFilter" style="margin-top: 12px;">
+                        <i class="fas fa-times"></i> Reset Filter Tanggal
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table-panel glass-card">
+                    <div class="panel-toolbar">
+                        <div class="toolbar-left">
+                            <div class="search-box-table">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="searchInput" placeholder="Cari kode, pasien, dokter...">
+                            </div>
+                            <div class="filter-group">
+                                <select id="filterStatus" class="filter-select">
+                                    <option value="">Semua Status</option>
+                                    <option value="Dijadwalkan">Dijadwalkan</option>
+                                    <option value="Selesai">Selesai</option>
+                                    <option value="Dibatalkan">Dibatalkan</option>
+                                    <option value="No-Show">No-Show</option>
+                                </select>
+                                <select id="filterPriority" class="filter-select">
+                                    <option value="">Semua Prioritas</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="Urgent">Urgent</option>
+                                    <option value="Emergency">Emergency</option>
+                                </select>
+                                <select id="filterDoctor" class="filter-select">
+                                    <option value="">Semua Dokter</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="toolbar-right">
+                            <button class="btn-icon" id="btnExportExcel" title="Export Excel"><i class="fas fa-file-excel"></i></button>
+                            <button class="btn-icon" id="btnExportPDF" title="Export PDF"><i class="fas fa-file-pdf"></i></button>
+                            <button class="btn-icon" id="btnPrint" title="Print"><i class="fas fa-print"></i></button>
+                            <button class="btn-icon" id="btnRefresh" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="kode">Kode <i class="fas fa-sort"></i></th>
+                                    <th class="sortable" data-sort="tanggal">Tanggal/Jam <i class="fas fa-sort"></i></th>
+                                    <th>Pasien</th>
+                                    <th>Dokter</th>
+                                    <th>Poli</th>
+                                    <th>Jenis</th>
+                                    <th>Prioritas</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                        <div class="empty-state" id="emptyState" style="display: none;">
+                            <i class="fas fa-calendar-times"></i>
+                            <h3>Tidak Ada Data</h3>
+                            <p>Belum ada janji temu yang sesuai dengan filter Anda</p>
+                        </div>
+                    </div>
+
+                    <div class="table-footer">
+                        <div class="table-info">
+                            Menampilkan <span id="showingStart">0</span>-<span id="showingEnd">0</span> dari <span id="showingTotal">0</span> data
+                        </div>
+                        <div class="pagination" id="pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Add/Edit Appointment Modal -->
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span>Buat Janji Temu Baru</span>
+                </h3>
+                <button class="modal-close" id="btnCloseModal"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="appointmentForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <!-- Kode Janji -->
+                        <div class="form-group">
+                            <label>Kode Janji <span class="required">*</span></label>
+                            <div class="input-with-icon readonly">
+                                <i class="fas fa-hashtag"></i>
+                                <input type="text" id="kodeJanji" readonly>
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="form-group">
+                            <label>Status <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-toggle-on"></i>
+                                <select id="status" required>
+                                    <option value="Dijadwalkan">Dijadwalkan</option>
+                                    <option value="Selesai">Selesai</option>
+                                    <option value="Dibatalkan">Dibatalkan</option>
+                                    <option value="No-Show">No-Show</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Tanggal -->
+                        <div class="form-group">
+                            <label>Tanggal <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="tanggal" required>
+                            </div>
+                            <span class="error-message" id="error-tanggal"></span>
+                        </div>
+
+                        <!-- Jam -->
+                        <div class="form-group">
+                            <label>Jam <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-clock"></i>
+                                <input type="time" id="jam" required>
+                            </div>
+                            <span class="error-message" id="error-jam"></span>
+                        </div>
+
+                        <!-- Pasien -->
+                        <div class="form-group">
+                            <label>Pilih Pasien <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-injured"></i>
+                                <select id="idPasien" required>
+                                    <option value="">-- Pilih Pasien --</option>
+                                </select>
+                            </div>
+                            <span class="error-message" id="error-idPasien"></span>
+                            <div class="patient-preview" id="patientPreview"></div>
+                        </div>
+
+                        <!-- Dokter -->
+                        <div class="form-group">
+                            <label>Pilih Dokter <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-md"></i>
+                                <select id="idDokter" required>
+                                    <option value="">-- Pilih Dokter --</option>
+                                </select>
+                            </div>
+                            <span class="error-message" id="error-idDokter"></span>
+                            <div class="doctor-preview" id="doctorPreview"></div>
+                        </div>
+
+                        <!-- Poli (auto) -->
+                        <div class="form-group">
+                            <label>Poli</label>
+                            <div class="input-with-icon readonly">
+                                <i class="fas fa-hospital"></i>
+                                <input type="text" id="poli" readonly placeholder="Otomatis dari dokter">
+                            </div>
+                        </div>
+
+                        <!-- Jenis Kunjungan -->
+                        <div class="form-group">
+                            <label>Jenis Kunjungan <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                                <select id="jenisKunjungan" required>
+                                    <option value="">-- Pilih Jenis --</option>
+                                    <option value="Konsultasi Baru">Konsultasi Baru</option>
+                                    <option value="Kontrol Ulang">Kontrol Ulang</option>
+                                    <option value="Pemeriksaan">Pemeriksaan</option>
+                                    <option value="Vaksinasi">Vaksinasi</option>
+                                    <option value="Medical Check Up">Medical Check Up</option>
+                                    <option value="Rujukan">Rujukan</option>
+                                </select>
+                            </div>
+                            <span class="error-message" id="error-jenisKunjungan"></span>
+                        </div>
+
+                        <!-- Prioritas -->
+                        <div class="form-group">
+                            <label>Prioritas <span class="required">*</span></label>
+                            <div class="priority-options">
+                                <label class="priority-option">
+                                    <input type="radio" name="prioritas" value="Normal" checked>
+                                    <span class="priority-label normal">
+                                        <i class="fas fa-circle"></i> Normal
+                                    </span>
+                                </label>
+                                <label class="priority-option">
+                                    <input type="radio" name="prioritas" value="Urgent">
+                                    <span class="priority-label urgent">
+                                        <i class="fas fa-exclamation-circle"></i> Urgent
+                                    </span>
+                                </label>
+                                <label class="priority-option">
+                                    <input type="radio" name="prioritas" value="Emergency">
+                                    <span class="priority-label emergency">
+                                        <i class="fas fa-exclamation-triangle"></i> Emergency
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Keluhan -->
+                        <div class="form-group full-width">
+                            <label>Keluhan <span class="required">*</span></label>
+                            <div class="input-with-icon textarea-wrapper">
+                                <i class="fas fa-comment-medical"></i>
+                                <textarea id="keluhan" rows="3" placeholder="Keluhan pasien" required></textarea>
+                            </div>
+                            <span class="error-message" id="error-keluhan"></span>
+                        </div>
+                    </div>
+
+                    <!-- Conflict Warning -->
+                    <div class="conflict-warning" id="conflictWarning" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div class="conflict-content">
+                            <strong>Peringatan Jadwal Bentrok!</strong>
+                            <p id="conflictMessage"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="btnCancelForm">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmitForm">
+                        <i class="fas fa-save"></i>
+                        <span>Simpan Janji</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-calendar-check"></i> Detail Janji Temu</h3>
+                <button class="modal-close" id="btnCloseDetail"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="detailBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" id="btnCloseDetail2">Tutup</button>
+                <button type="button" class="btn btn-primary" id="btnEditFromDetail">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box modal-small">
+            <div class="modal-icon danger"><i class="fas fa-trash-alt"></i></div>
+            <h3 class="modal-title">Konfirmasi Hapus</h3>
+            <p class="modal-message">Hapus janji temu <strong id="deleteAppointmentCode"></strong>?</p>
+            <p class="modal-warning">Data yang dihapus tidak dapat dikembalikan!</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="btnCancelDelete">Batal</button>
+                <button class="btn btn-danger" id="btnConfirmDelete">
+                    <i class="fas fa-trash-alt"></i> Ya, Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/janji.js"></script>
+    <!-- Global Navbar Interactivity -->
+    <script src="../assets/js/navbar.js"></script>
+</body>
+</html>

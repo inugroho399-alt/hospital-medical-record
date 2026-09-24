@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registrasi Pasien - Hospital Medical Record Information System">
+    <title>Registrasi Pasien - HMRIS</title>
+    <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/signup.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="landing.html" class="nav-logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>HMR<span class="logo-highlight">IS</span></span>
+                </a>
+                <div class="nav-auth">
+                    <span class="nav-text">Sudah punya akun?</span>
+                    <a href="index.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== HERO / SIGNUP SECTION ==================== -->
+    <section class="signup-hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="container signup-container">
+            <div class="signup-info fade-in">
+                <span class="signup-badge">
+                    <i class="fas fa-user-plus"></i> Registrasi Pasien Baru
+                </span>
+                <h1 class="signup-title">
+                    Bergabung dengan
+                    <span class="text-gradient">HMRIS</span>
+                </h1>
+                <p class="signup-description">
+                    Daftarkan diri Anda untuk mengakses layanan rekam medis digital yang modern, aman, dan terintegrasi. Kelola riwayat kesehatan Anda dengan mudah.
+                </p>
+
+                <div class="signup-benefits">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Data Aman & Terenkripsi</h4>
+                            <p>Informasi medis Anda dilindungi dengan standar keamanan tinggi</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Akses 24/7</h4>
+                            <p>Pantau rekam medis Anda kapan saja dan di mana saja</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <h4>Rekam Medis Digital</h4>
+                            <p>Riwayat kesehatan tersimpan rapi dan mudah diakses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== SIGNUP FORM ==================== -->
+            <div class="signup-form-wrapper fade-in">
+                <form class="signup-form glass-card" id="signupForm" novalidate>
+                    <div class="form-header">
+                        <h2 class="form-title">Buat Akun Pasien</h2>
+                        <p class="form-subtitle">Lengkapi data di bawah ini dengan benar</p>
+                    </div>
+
+                    <!-- Foto Upload -->
+                    <div class="photo-upload-section">
+                        <label class="photo-upload-label">Foto Profil</label>
+                        <div class="photo-upload-wrapper">
+                            <div class="photo-preview" id="photoPreview">
+                                <i class="fas fa-camera"></i>
+                                <span>Upload Foto</span>
+                            </div>
+                            <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/jpg" hidden>
+                            <button type="button" class="btn-upload" id="btnUploadPhoto">
+                                <i class="fas fa-cloud-upload-alt"></i> Pilih Foto
+                            </button>
+                            <button type="button" class="btn-remove-photo" id="btnRemovePhoto" style="display: none;">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                        <small class="form-hint">Format: JPG, PNG. Maks: 2MB</small>
+                    </div>
+
+                    <!-- Nomor RM (Auto) -->
+                    <div class="form-group">
+                        <label for="noRM">
+                            Nomor Rekam Medis <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon readonly">
+                            <i class="fas fa-id-card"></i>
+                            <input type="text" id="noRM" name="noRM" readonly placeholder="Otomatis">
+                            <i class="fas fa-lock input-lock-icon"></i>
+                        </div>
+                        <small class="form-hint">Nomor RM akan dibuat otomatis oleh sistem</small>
+                    </div>
+
+                    <!-- NIK -->
+                    <div class="form-group">
+                        <label for="nik">
+                            NIK (Nomor Induk Kependudukan) <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-fingerprint"></i>
+                            <input type="text" id="nik" name="nik" maxlength="16" placeholder="Masukkan 16 digit NIK" required>
+                        </div>
+                        <span class="error-message" id="error-nik"></span>
+                    </div>
+
+                    <!-- Nama Lengkap -->
+                    <div class="form-group">
+                        <label for="nama">
+                            Nama Lengkap <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        <span class="error-message" id="error-nama"></span>
+                    </div>
+
+                    <!-- Tempat & Tanggal Lahir -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tempatLahir">
+                                Tempat Lahir <span class="required">*</span>
+                            </label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="tempatLahir" name="tempatLahir" placeholder="Kota kelahiran" required>
+                            </div>
+                            <span class="error-message" id="error-tempatLahir"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalLahir">
+                                Tanggal Lahir <span class="required">*</span>
+                            </label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                            </div>
+                            <span class="error-message" id="error-tanggalLahir"></span>
+                        </div>
+                    </div>
+
+                    <!-- Jenis Kelamin & Golongan Darah -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>
+                                Jenis Kelamin <span class="required">*</span>
+                            </label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="jenisKelamin" value="Laki-laki" required>
+                                    <span class="radio-custom">
+                                        <i class="fas fa-mars"></i> Laki-laki
+                                    </span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jenisKelamin" value="Perempuan">
+                                    <span class="radio-custom">
+                                        <i class="fas fa-venus"></i> Perempuan
+                                    </span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="error-jenisKelamin"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="golonganDarah">
+                                Golongan Darah <span class="required">*</span>
+                            </label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-tint"></i>
+                                <select id="golonganDarah" name="golonganDarah" required>
+                                    <option value="">Pilih Golongan Darah</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
+                            </div>
+                            <span class="error-message" id="error-golonganDarah"></span>
+                        </div>
+                    </div>
+
+                    <!-- Alamat -->
+                    <div class="form-group">
+                        <label for="alamat">
+                            Alamat Lengkap <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon textarea-wrapper">
+                            <i class="fas fa-home"></i>
+                            <textarea id="alamat" name="alamat" rows="3" placeholder="Masukkan alamat lengkap" required></textarea>
+                        </div>
+                        <span class="error-message" id="error-alamat"></span>
+                    </div>
+
+                    <!-- Nomor HP -->
+                    <div class="form-group">
+                        <label for="noHP">
+                            Nomor HP <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="noHP" name="noHP" maxlength="15" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                        <span class="error-message" id="error-noHP"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">
+                            Email <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                        </div>
+                        <span class="error-message" id="error-email"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username">
+                            Username <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user-circle"></i>
+                            <input type="text" id="username" name="username" placeholder="Minimal 4 karakter" required>
+                        </div>
+                        <span class="error-message" id="error-username"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">
+                            Password <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required>
+                            <button type="button" class="toggle-password" data-target="password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="error-password"></span>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar"></div>
+                        </div>
+                        <small class="form-hint">Gunakan kombinasi huruf, angka, dan simbol</small>
+                    </div>
+
+                    <!-- Konfirmasi Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            Konfirmasi Password <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ulangi password" required>
+                            <button type="button" class="toggle-password" data-target="confirmPassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="error-confirmPassword"></span>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">
+                                Saya setuju dengan <a href="#" class="link">Syarat & Ketentuan</a> serta <a href="#" class="link">Kebijakan Privasi</a> HMRIS
+                            </span>
+                        </label>
+                        <span class="error-message" id="error-terms"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block btn-submit" id="btnSubmit">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Daftar Sekarang</span>
+                    </button>
+
+                    <!-- Login Link -->
+                    <p class="form-footer">
+                        Sudah punya akun? <a href="index.html" class="link">Login di sini</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer-simple">
+        <div class="container">
+            <p>&copy; 2024 HMRIS — Hospital Medical Record Information System</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="assets/js/signup.js"></script>
+</body>
+</html>

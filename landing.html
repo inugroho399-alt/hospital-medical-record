@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hospital Medical Record Information System - Sistem Informasi Rekam Medis Rumah Sakit Modern dan Profesional">
+    <title>HMRIS - Hospital Medical Record Information System</title>
+    <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/landing.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <!-- Logo -->
+                <a href="landing.html" class="nav-logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>HMR<span class="logo-highlight">IS</span></span>
+                </a>
+
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">Fitur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#testimonials" class="nav-link">Testimoni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#faq" class="nav-link">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Kontak</a>
+                    </li>
+                </ul>
+
+                <!-- Auth Buttons -->
+                <div class="nav-auth">
+                    <a href="index.html" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="signup.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                <span class="hero-badge">
+                    <i class="fas fa-shield-alt"></i> Sistem Rekam Medis Terpercaya
+                </span>
+                <h1 class="hero-title">
+                    Hospital Medical Record
+                    <span class="text-gradient">Information System</span>
+                </h1>
+                <p class="hero-description">
+                    Platform digital modern untuk mengelola rekam medis rumah sakit secara efisien, aman, dan terintegrasi. Tingkatkan kualitas pelayanan kesehatan dengan teknologi terkini.
+                </p>
+                <div class="hero-buttons">
+                    <a href="signup.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> Mulai Sekarang
+                    </a>
+                    <a href="#about" class="btn btn-glass btn-lg">
+                        <i class="fas fa-play-circle"></i> Pelajari Lebih Lanjut
+                    </a>
+                </div>
+                <div class="hero-stats-mini">
+                    <div class="stat-mini">
+                        <i class="fas fa-check-circle"></i>
+                        <span>HIPAA Compliant</span>
+                    </div>
+                    <div class="stat-mini">
+                        <i class="fas fa-check-circle"></i>
+                        <span>24/7 Support</span>
+                    </div>
+                    <div class="stat-mini">
+                        <i class="fas fa-check-circle"></i>
+                        <span>99.9% Uptime</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <div class="hero-card glass-card">
+                    <div class="hero-card-header">
+                        <div class="card-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <span class="card-title">Patient Dashboard</span>
+                    </div>
+                    <div class="hero-card-body">
+                        <div class="mock-stat">
+                            <div class="mock-icon blue"><i class="fas fa-user-injured"></i></div>
+                            <div class="mock-info">
+                                <span class="mock-label">Total Pasien</span>
+                                <span class="mock-value">2,847</span>
+                            </div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="mock-icon green"><i class="fas fa-file-medical"></i></div>
+                            <div class="mock-info">
+                                <span class="mock-label">Rekam Medis</span>
+                                <span class="mock-value">12,459</span>
+                            </div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="mock-icon purple"><i class="fas fa-user-md"></i></div>
+                            <div class="mock-info">
+                                <span class="mock-label">Dokter Aktif</span>
+                                <span class="mock-value">156</span>
+                            </div>
+                        </div>
+                        <div class="mock-chart">
+                            <div class="chart-bar" style="height: 60%"></div>
+                            <div class="chart-bar" style="height: 80%"></div>
+                            <div class="chart-bar" style="height: 45%"></div>
+                            <div class="chart-bar" style="height: 90%"></div>
+                            <div class="chart-bar" style="height: 70%"></div>
+                            <div class="chart-bar" style="height: 55%"></div>
+                            <div class="chart-bar" style="height: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#ffffff"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Tentang Kami</span>
+                <h2 class="section-title">Mengapa Memilih <span class="text-gradient">HMRIS</span>?</h2>
+                <p class="section-subtitle">
+                    Sistem informasi rekam medis yang dirancang khusus untuk memenuhi kebutuhan rumah sakit modern di Indonesia.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <div class="about-img-wrapper">
+                        <div class="about-card glass-card">
+                            <i class="fas fa-heartbeat"></i>
+                            <h4>Healthcare Excellence</h4>
+                            <p>Memberikan pelayanan terbaik untuk dunia kesehatan Indonesia</p>
+                        </div>
+                        <div class="about-decoration">
+                            <div class="deco-circle"></div>
+                            <div class="deco-circle small"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content fade-in">
+                    <h3 class="about-title">Transformasi Digital Rekam Medis Rumah Sakit</h3>
+                    <p class="about-text">
+                        HMRIS hadir sebagai solusi komprehensif untuk digitalisasi rekam medis di rumah sakit. Kami memahami bahwa pengelolaan data medis yang efisien adalah kunci pelayanan kesehatan berkualitas.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Keamanan Data Terjamin</h4>
+                                <p>Enkripsi end-to-end untuk melindungi data sensitif pasien</p>
+                            </div>
+                        </div>
+                        <div class="about-feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Real-time Sync</h4>
+                                <p>Data tersinkronisasi secara real-time antar departemen</p>
+                            </div>
+                        </div>
+                        <div class="about-feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Analitik Cerdas</h4>
+                                <p>Laporan dan statistik untuk pengambilan keputusan berbasis data</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STATISTICS SECTION ==================== -->
+    <section class="statistics section" id="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card glass-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3 class="stat-number counter" data-target="150">0</h3>
+                    <p class="stat-label">Rumah Sakit</p>
+                </div>
+                <div class="stat-card glass-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="stat-number counter" data-target="2500">0</h3>
+                    <p class="stat-label">Tenaga Medis</p>
+                </div>
+                <div class="stat-card glass-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3 class="stat-number counter" data-target="50000">0</h3>
+                    <p class="stat-label">Data Pasien</p>
+                </div>
+                <div class="stat-card glass-card fade-in">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="stat-number counter" data-target="99">0</h3>
+                    <p class="stat-label">% Kepuasan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FEATURES SECTION ==================== -->
+    <section class="features section" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Fitur Unggulan</span>
+                <h2 class="section-title">Fitur <span class="text-gradient">Lengkap</span> untuk Kebutuhan Anda</h2>
+                <p class="section-subtitle">
+                    Dilengkapi dengan berbagai fitur canggih untuk mendukung operasional rumah sakit yang efisien.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon blue">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
+                    <h3 class="feature-card-title">Rekam Medis Digital</h3>
+                    <p class="feature-card-desc">Kelola seluruh rekam medis pasien secara digital dengan mudah dan aman.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon green">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="feature-card-title">Jadwal & Antrian</h3>
+                    <p class="feature-card-desc">Sistem antrian online dan manajemen jadwal praktik dokter yang terintegrasi.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon purple">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-card-title">Laporan & Analitik</h3>
+                    <p class="feature-card-desc">Dashboard analitik dengan grafik interaktif untuk monitoring performa.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon orange">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3 class="feature-card-title">Manajemen Farmasi</h3>
+                    <p class="feature-card-desc">Kelola stok obat, resep elektronik, dan inventaris farmasi secara real-time.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon red">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="feature-card-title">Role-Based Access</h3>
+                    <p class="feature-card-desc">Kontrol akses berbasis peran untuk keamanan data yang optimal.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="feature-card glass-card fade-in">
+                    <div class="feature-card-icon teal">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-card-title">Responsive Design</h3>
+                    <p class="feature-card-desc">Akses dari perangkat manapun — desktop, tablet, maupun smartphone.</p>
+                    <a href="#" class="feature-card-link">
+                        Selengkapnya <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY SECTION ==================== -->
+    <section class="gallery section" id="gallery">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Galeri</span>
+                <h2 class="section-title">Tampilan <span class="text-gradient">Antarmuka</span></h2>
+                <p class="section-subtitle">
+                    Preview tampilan sistem HMRIS yang modern dan user-friendly.
+                </p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-item-large fade-in">
+                    <div class="gallery-img">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard Overview</span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Dashboard Utama</h4>
+                        <p>Tampilan dashboard dengan statistik real-time</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="gallery-img">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-users"></i>
+                            <span>Data Pasien</span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Manajemen Pasien</h4>
+                        <p>Kelola data pasien dengan mudah</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="gallery-img">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-notes-medical"></i>
+                            <span>Rekam Medis</span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Rekam Medis</h4>
+                        <p>Catat dan akses riwayat medis</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <div class="gallery-img">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Jadwal Dokter</span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Jadwal Praktik</h4>
+                        <p>Atur jadwal dokter terintegrasi</p>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item-wide fade-in">
+                    <div class="gallery-img">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Laporan & Analitik</span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Laporan Analitik</h4>
+                        <p>Grafik dan statistik performa rumah sakit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Testimoni</span>
+                <h2 class="section-title">Apa Kata <span class="text-gradient">Mereka</span>?</h2>
+                <p class="section-subtitle">
+                    Pendapat para profesional kesehatan yang telah menggunakan HMRIS.
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "HMRIS sangat membantu kami dalam mengelola rekam medis pasien. Proses yang sebelumnya memakan waktu berjam-jam kini bisa selesai dalam hitungan menit."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>dr. Ahmad Fauzi</h4>
+                            <span>Dokter Spesialis Internal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Interface-nya sangat intuitif dan mudah digunakan. Tim IT kami tidak memerlukan pelatihan khusus untuk mengoperasikannya. Sangat recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-nurse"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Siti Nurhaliza, A.Md.Kep</h4>
+                            <span>Kepala Perawat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Fitur laporan dan analitiknya sangat membantu manajemen dalam mengambil keputusan berbasis data. ROI rumah sakit kami meningkat signifikan."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Dr. Budi Santoso, M.Kes</h4>
+                            <span>Direktur RS Harapan Sehat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ SECTION ==================== -->
+    <section class="faq section" id="faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Pertanyaan yang <span class="text-gradient">Sering Diajukan</span></h2>
+                <p class="section-subtitle">
+                    Temukan jawaban untuk pertanyaan umum tentang HMRIS.
+                </p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item glass-card fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apa itu HMRIS?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>HMRIS (Hospital Medical Record Information System) adalah sistem informasi rekam medis digital yang dirancang untuk membantu rumah sakit dalam mengelola data pasien, rekam medis, jadwal dokter, dan laporan secara terintegrasi dan efisien.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apakah data pasien aman di HMRIS?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ya, keamanan data adalah prioritas utama kami. HMRIS menggunakan enkripsi data, sistem autentikasi berlapis, dan kontrol akses berbasis peran (RBAC) untuk memastikan data pasien terlindungi dengan baik.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Siapa saja yang bisa menggunakan HMRIS?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>HMRIS memiliki 4 role pengguna: Admin (pengelola sistem), Dokter (akses rekam medis & jadwal), Perawat (akses data pasien & antrian), dan Pasien (akses data pribadi & riwayat medis sendiri).</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Apakah HMRIS bisa diakses dari smartphone?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tentu saja! HMRIS dirancang dengan pendekatan mobile-first dan fully responsive, sehingga dapat diakses dengan optimal dari perangkat desktop, tablet, maupun smartphone.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass-card fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Bagaimana cara memulai menggunakan HMRIS?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Anda cukup mendaftar akun melalui halaman Sign Up, kemudian login untuk mengakses dashboard. Untuk implementasi di rumah sakit, tim kami akan membantu proses setup dan migrasi data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-badge">Hubungi Kami</span>
+                <h2 class="section-title">Ada <span class="text-gradient">Pertanyaan</span>?</h2>
+                <p class="section-subtitle">
+                    Jangan ragu untuk menghubungi kami. Tim support siap membantu Anda.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in">
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Alamat</h4>
+                        <p>Jl. Kesehatan No. 123, Jakarta Selatan, Indonesia 12345</p>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4>Telepon</h4>
+                        <p>+62 21 1234 5678</p>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p>info@hmris.co.id</p>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Jam Operasional</h4>
+                        <p>Senin - Jumat: 08.00 - 17.00 WIB</p>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper fade-in">
+                    <form class="contact-form glass-card" id="contactForm">
+                        <h3 class="form-title">Kirim Pesan</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subjek pesan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="landing.html" class="footer-logo">
+                        <i class="fas fa-hospital"></i>
+                        <span>HMR<span class="logo-highlight">IS</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        Sistem Informasi Rekam Medis Rumah Sakit modern dan terintegrasi untuk mendukung transformasi digital layanan kesehatan Indonesia.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigasi</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#gallery">Galeri</a></li>
+                        <li><a href="#testimonials">Testimoni</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Rekam Medis Digital</a></li>
+                        <li><a href="#">Manajemen Pasien</a></li>
+                        <li><a href="#">Jadwal Dokter</a></li>
+                        <li><a href="#">Laporan & Analitik</a></li>
+                        <li><a href="#">Support 24/7</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+                <p>Dibuat dengan <i class="fas fa-heart text-danger"></i> untuk Pemrograman Web 1</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== BACK TO TOP BUTTON ==================== -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Custom JS -->
+    <script src="assets/js/landing.js"></script>
+</body>
+</html>

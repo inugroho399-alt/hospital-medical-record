@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pengaturan - Hospital Medical Record Information System">
+    <title>Pengaturan - HMRIS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/pengaturan.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard/index.html" class="sidebar-logo">
+                <i class="fas fa-hospital"></i>
+                <span>HMR<span class="logo-highlight">IS</span></span>
+            </a>
+        </div>
+
+        <div class="role-badge-wrapper">
+            <div class="role-badge" id="roleBadge">
+                <i class="fas fa-user-circle"></i>
+                <span id="roleBadgeText">Role</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list" id="navList"></ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="btnLogoutSidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <div class="sidebar-copyright">
+                <small>&copy; 2024 HMRIS v1.0</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-wrapper">
+        <!-- ==================== TOP NAVBAR ==================== -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari pasien, dokter, rekam medis...">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <button class="navbar-icon-btn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+
+                <button class="navbar-icon-btn" aria-label="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">User Name</span>
+                        <span class="user-role" id="userRole">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 id="dropdownName">User Name</h4>
+                                <p id="dropdownEmail">user@email.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="pengaturan.html?section=profile" class="dropdown-item"><i class="fas fa-user-circle"></i><span>Profil Saya</span></a>
+                        <a href="pengaturan.html" class="dropdown-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogoutDropdown">
+                            <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <div class="page-header-left">
+                    <nav class="breadcrumb">
+                        <a href="dashboard/index.html"><i class="fas fa-home"></i> Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="active">Pengaturan</span>
+                    </nav>
+                    <h1 class="page-title">Pengaturan Sistem</h1>
+                    <p class="page-subtitle">Kelola profil, data, dan preferensi sistem HMRIS</p>
+                </div>
+            </div>
+
+            <!-- Settings Layout -->
+            <section class="settings-layout fade-in">
+                <!-- Settings Menu -->
+                <aside class="settings-menu">
+                    <div class="settings-menu-item active" data-section="hospital">
+                        <i class="fas fa-hospital"></i>
+                        <span>Profil Rumah Sakit</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="profile">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profil Pengguna</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="password">
+                        <i class="fas fa-key"></i>
+                        <span>Ganti Password</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="backup">
+                        <i class="fas fa-download"></i>
+                        <span>Backup Data</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="restore">
+                        <i class="fas fa-upload"></i>
+                        <span>Restore Data</span>
+                    </div>
+                    <div class="settings-menu-item danger" data-section="reset">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Reset Semua Data</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="appearance">
+                        <i class="fas fa-palette"></i>
+                        <span>Tampilan</span>
+                    </div>
+                    <div class="settings-menu-item" data-section="info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Informasi Sistem</span>
+                    </div>
+                </aside>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+
+                    <!-- ==================== HOSPITAL PROFILE ==================== -->
+                    <div class="settings-section active" id="section-hospital">
+                        <div class="section-header-box">
+                            <div class="section-icon">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Profil Rumah Sakit</h2>
+                                <p class="section-desc">Informasi dasar rumah sakit yang ditampilkan pada laporan dan dokumen resmi</p>
+                            </div>
+                        </div>
+
+                        <form id="hospitalForm" class="settings-form">
+                            <!-- Logo Upload -->
+                            <div class="logo-upload-area">
+                                <div class="logo-preview-wrapper">
+                                    <div class="logo-preview" id="logoPreview">
+                                        <i class="fas fa-hospital-alt"></i>
+                                        <span>Logo RS</span>
+                                    </div>
+                                    <input type="file" id="logoInput" accept="image/*" hidden>
+                                </div>
+                                <div class="logo-actions">
+                                    <button type="button" class="btn btn-primary btn-sm" id="btnUploadLogo">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Upload Logo</span>
+                                    </button>
+                                    <button type="button" class="btn btn-outline btn-sm" id="btnRemoveLogo">
+                                        <i class="fas fa-trash"></i>
+                                        <span>Hapus</span>
+                                    </button>
+                                    <small class="form-hint">Format: JPG, PNG. Maks: 2MB. Disarankan rasio 1:1</small>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>Nama Rumah Sakit <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-hospital"></i>
+                                        <input type="text" id="rsNama" placeholder="Nama lengkap rumah sakit" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <label>Alamat <span class="required">*</span></label>
+                                    <div class="input-with-icon textarea-wrapper">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <textarea id="rsAlamat" rows="3" placeholder="Alamat lengkap" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Telepon <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="rsTelepon" placeholder="(021) 1234-5678" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="rsEmail" placeholder="info@rumahsakit.com" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Website</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-globe"></i>
+                                        <input type="url" id="rsWebsite" placeholder="https://www.rumahsakit.com">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nomor Izin Operasional</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-file-signature"></i>
+                                        <input type="text" id="rsIzin" placeholder="Nomor izin">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="btnResetHospital">
+                                    <i class="fas fa-undo"></i>
+                                    <span>Reset</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    <span>Simpan Perubahan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ==================== USER PROFILE ==================== -->
+                    <div class="settings-section" id="section-profile">
+                        <div class="section-header-box">
+                            <div class="section-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Profil Pengguna</h2>
+                                <p class="section-desc">Informasi pribadi dan akun Anda</p>
+                            </div>
+                        </div>
+
+                        <form id="profileForm" class="settings-form">
+                            <div class="profile-card">
+                                <div class="profile-avatar-large" id="profileAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="profile-info-card">
+                                    <h3 id="profileDisplayName">User Name</h3>
+                                    <span class="profile-role-badge" id="profileRoleBadge">Role</span>
+                                    <p class="profile-join-date">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        Bergabung sejak <span id="profileJoinDate">-</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>Nama Lengkap</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="profileNama" placeholder="Nama lengkap">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <div class="input-with-icon readonly">
+                                        <i class="fas fa-user-circle"></i>
+                                        <input type="text" id="profileUsername" readonly>
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <small class="form-hint">Username tidak dapat diubah</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="profileEmail" placeholder="email@contoh.com">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>No HP</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="profileHP" placeholder="08xxxxxxxxxx">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <div class="input-with-icon readonly">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <input type="text" id="profileRole" readonly>
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <small class="form-hint">Role hanya dapat diubah oleh Administrator</small>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="btnResetProfile">
+                                    <i class="fas fa-undo"></i>
+                                    <span>Reset</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    <span>Update Profil</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ==================== CHANGE PASSWORD ==================== -->
+                    <div class="settings-section" id="section-password">
+                        <div class="section-header-box">
+                            <div class="section-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Ganti Password</h2>
+                                <p class="section-desc">Ubah password Anda secara berkala untuk keamanan akun</p>
+                            </div>
+                        </div>
+
+                        <form id="passwordForm" class="settings-form">
+                            <div class="password-security-info">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Keamanan Password</h4>
+                                    <p>Gunakan kombinasi huruf besar, huruf kecil, angka, dan simbol. Minimal 8 karakter.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>Password Lama <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="oldPassword" placeholder="Masukkan password lama" required>
+                                        <button type="button" class="toggle-password" data-target="oldPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Password Baru <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-key"></i>
+                                        <input type="password" id="newPassword" placeholder="Minimal 8 karakter" required>
+                                        <button type="button" class="toggle-password" data-target="newPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="password-strength" id="passwordStrength">
+                                        <div class="strength-bar"></div>
+                                    </div>
+                                    <small class="form-hint" id="passwordHint">Masukkan password baru</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Konfirmasi Password <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                        <input type="password" id="confirmPassword" placeholder="Ulangi password baru" required>
+                                        <button type="button" class="toggle-password" data-target="confirmPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="btnResetPassword">
+                                    <i class="fas fa-undo"></i>
+                                    <span>Reset</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-key"></i>
+                                    <span>Ganti Password</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ==================== BACKUP ==================== -->
+                    <div class="settings-section" id="section-backup">
+                        <div class="section-header-box">
+                            <div class="section-icon success">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Backup Data</h2>
+                                <p class="section-desc">Simpan cadangan seluruh data sistem ke file JSON</p>
+                            </div>
+                        </div>
+
+                        <div class="backup-info-grid">
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Data Pasien</h4>
+                                    <span id="backupPatientCount">0 data</span>
+                                </div>
+                            </div>
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Data Dokter</h4>
+                                    <span id="backupDoctorCount">0 data</span>
+                                </div>
+                            </div>
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-file-medical"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Rekam Medis</h4>
+                                    <span id="backupRecordCount">0 data</span>
+                                </div>
+                            </div>
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Janji Temu</h4>
+                                    <span id="backupAppointmentCount">0 data</span>
+                                </div>
+                            </div>
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Laboratorium</h4>
+                                    <span id="backupLabCount">0 data</span>
+                                </div>
+                            </div>
+                            <div class="backup-info-card">
+                                <div class="backup-info-icon">
+                                    <i class="fas fa-capsules"></i>
+                                </div>
+                                <div class="backup-info-text">
+                                    <h4>Farmasi</h4>
+                                    <span id="backupMedicineCount">0 data</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="backup-warning">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <h4>Informasi Backup</h4>
+                                <p>Backup akan menyimpan seluruh data dalam format JSON. Simpan file ini di tempat yang aman untuk keperluan restore di masa depan.</p>
+                            </div>
+                        </div>
+
+                        <div class="backup-actions">
+                            <button type="button" class="btn btn-primary btn-lg" id="btnBackup">
+                                <i class="fas fa-download"></i>
+                                <span>Download Backup Sekarang</span>
+                            </button>
+                            <p class="backup-last">
+                                <i class="fas fa-clock"></i>
+                                Backup terakhir: <strong id="lastBackupTime">Belum pernah</strong>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ==================== RESTORE ==================== -->
+                    <div class="settings-section" id="section-restore">
+                        <div class="section-header-box">
+                            <div class="section-icon warning">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Restore Data</h2>
+                                <p class="section-desc">Kembalikan data dari file backup JSON</p>
+                            </div>
+                        </div>
+
+                        <div class="restore-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <h4>Peringatan!</h4>
+                                <p>Restore akan <strong>mengganti seluruh data saat ini</strong> dengan data dari file backup. Pastikan Anda sudah melakukan backup sebelum melanjutkan.</p>
+                            </div>
+                        </div>
+
+                        <div class="restore-upload-area" id="restoreDropZone">
+                            <input type="file" id="restoreInput" accept=".json" hidden>
+                            <div class="restore-upload-content" id="restoreUploadContent">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h4>Seret file JSON ke sini</h4>
+                                <p>atau</p>
+                                <button type="button" class="btn btn-primary" id="btnSelectRestore">
+                                    <i class="fas fa-folder-open"></i>
+                                    <span>Pilih File Backup</span>
+                                </button>
+                                <small>Format: .json (maks 10MB)</small>
+                            </div>
+                            <div class="restore-file-info" id="restoreFileInfo" style="display: none;">
+                                <i class="fas fa-file-code"></i>
+                                <div class="file-details">
+                                    <h4 id="restoreFileName">filename.json</h4>
+                                    <p id="restoreFileSize">0 KB</p>
+                                </div>
+                                <button type="button" class="btn-remove-file" id="btnRemoveRestoreFile">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="restore-preview" id="restorePreview" style="display: none;">
+                            <h4><i class="fas fa-eye"></i> Preview Data Backup</h4>
+                            <div class="restore-preview-grid" id="restorePreviewGrid"></div>
+                        </div>
+
+                        <div class="restore-actions">
+                            <button type="button" class="btn btn-outline" id="btnCancelRestore">
+                                <i class="fas fa-times"></i>
+                                <span>Batal</span>
+                            </button>
+                            <button type="button" class="btn btn-primary" id="btnStartRestore" disabled>
+                                <i class="fas fa-undo"></i>
+                                <span>Mulai Restore</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ==================== RESET ==================== -->
+                    <div class="settings-section" id="section-reset">
+                        <div class="section-header-box">
+                            <div class="section-icon danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Reset Semua Data</h2>
+                                <p class="section-desc">Hapus seluruh data sistem dan kembalikan ke kondisi awal</p>
+                            </div>
+                        </div>
+
+                        <div class="reset-danger-zone">
+                            <div class="danger-header">
+                                <i class="fas fa-radiation-alt"></i>
+                                <h4>Zona Berbahaya</h4>
+                            </div>
+                            <p class="danger-desc">Tindakan ini akan menghapus <strong>SEMUA DATA</strong> secara permanen termasuk:</p>
+                            <ul class="danger-list">
+                                <li><i class="fas fa-times-circle"></i> Seluruh data pasien dan rekam medis</li>
+                                <li><i class="fas fa-times-circle"></i> Data dokter, perawat, dan petugas</li>
+                                <li><i class="fas fa-times-circle"></i> Data janji temu dan laboratorium</li>
+                                <li><i class="fas fa-times-circle"></i> Data farmasi dan stok obat</li>
+                                <li><i class="fas fa-times-circle"></i> Semua pengaturan sistem dan profil</li>
+                                <li><i class="fas fa-times-circle"></i> Akun pengguna (kecuali admin default)</li>
+                            </ul>
+
+                            <div class="reset-confirm-box">
+                                <label class="checkbox-confirm">
+                                    <input type="checkbox" id="confirmReset1">
+                                    <span>Saya mengerti bahwa tindakan ini tidak dapat dibatalkan</span>
+                                </label>
+                                <label class="checkbox-confirm">
+                                    <input type="checkbox" id="confirmReset2">
+                                    <span>Saya sudah melakukan backup data sebelumnya</span>
+                                </label>
+                                <div class="confirm-input-group">
+                                    <label>Ketik <code>RESET</code> untuk konfirmasi:</label>
+                                    <input type="text" id="confirmResetText" placeholder="Ketik RESET di sini">
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-danger btn-lg" id="btnResetAll" disabled>
+                                <i class="fas fa-trash-alt"></i>
+                                <span>Reset Semua Data</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ==================== APPEARANCE ==================== -->
+                    <div class="settings-section" id="section-appearance">
+                        <div class="section-header-box">
+                            <div class="section-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Tampilan</h2>
+                                <p class="section-desc">Sesuaikan tampilan aplikasi sesuai preferensi Anda</p>
+                            </div>
+                        </div>
+
+                        <div class="theme-options">
+                            <div class="theme-card" data-theme="light">
+                                <div class="theme-preview light-preview">
+                                    <div class="preview-sidebar"></div>
+                                    <div class="preview-content">
+                                        <div class="preview-header"></div>
+                                        <div class="preview-body">
+                                            <div class="preview-card"></div>
+                                            <div class="preview-card"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="theme-info">
+                                    <div class="theme-radio">
+                                        <input type="radio" name="theme" value="light" id="themeLight">
+                                        <span class="radio-custom"></span>
+                                    </div>
+                                    <div class="theme-text">
+                                        <h4><i class="fas fa-sun"></i> Light Mode</h4>
+                                        <p>Tampilan terang, cocok untuk penggunaan siang hari</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="theme-card" data-theme="dark">
+                                <div class="theme-preview dark-preview">
+                                    <div class="preview-sidebar"></div>
+                                    <div class="preview-content">
+                                        <div class="preview-header"></div>
+                                        <div class="preview-body">
+                                            <div class="preview-card"></div>
+                                            <div class="preview-card"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="theme-info">
+                                    <div class="theme-radio">
+                                        <input type="radio" name="theme" value="dark" id="themeDark">
+                                        <span class="radio-custom"></span>
+                                    </div>
+                                    <div class="theme-text">
+                                        <h4><i class="fas fa-moon"></i> Dark Mode</h4>
+                                        <p>Tampilan gelap, nyaman untuk mata di malam hari</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="additional-settings">
+                            <h3 class="additional-title">
+                                <i class="fas fa-sliders-h"></i>
+                                Pengaturan Tambahan
+                            </h3>
+
+                            <div class="setting-toggle-row">
+                                <div class="toggle-info">
+                                    <h4>Animasi Transisi</h4>
+                                    <p>Aktifkan animasi smooth pada elemen UI</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleAnimation" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-toggle-row">
+                                <div class="toggle-info">
+                                    <h4>Notifikasi Toast</h4>
+                                    <p>Tampilkan notifikasi pop-up saat ada aksi</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleToast" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-toggle-row">
+                                <div class="toggle-info">
+                                    <h4>Sidebar Compact</h4>
+                                    <p>Tampilkan sidebar dalam mode compact</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleCompact">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== SYSTEM INFO ==================== -->
+                    <div class="settings-section" id="section-info">
+                        <div class="section-header-box">
+                            <div class="section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div>
+                                <h2 class="section-title">Informasi Sistem</h2>
+                                <p class="section-desc">Detail teknis dan statistik sistem HMRIS</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-server"></i>
+                                    <h4>Aplikasi</h4>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-row">
+                                        <span>Nama</span>
+                                        <strong>HMRIS</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Versi</span>
+                                        <strong>1.0.0</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Build</span>
+                                        <strong>2024.01.15</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Status</span>
+                                        <span class="status-pill success"><i class="fas fa-circle"></i> Aktif</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-database"></i>
+                                    <h4>Penyimpanan</h4>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-row">
+                                        <span>Tipe</span>
+                                        <strong>LocalStorage</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Total Digunakan</span>
+                                        <strong id="storageUsed">0 KB</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Kapasitas</span>
+                                        <strong>~5 MB</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Keys</span>
+                                        <strong id="storageKeys">0</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <h4>Teknologi</h4>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-row">
+                                        <span>HTML</span>
+                                        <strong>HTML5</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>CSS</span>
+                                        <strong>CSS3</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>JavaScript</span>
+                                        <strong>ES6+ Vanilla</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Font</span>
+                                        <strong>Poppins</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-chart-pie"></i>
+                                    <h4>Statistik Data</h4>
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="info-row">
+                                        <span>Pasien</span>
+                                        <strong id="infoPatientCount">0</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Dokter</span>
+                                        <strong id="infoDoctorCount">0</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Rekam Medis</span>
+                                        <strong id="infoRecordCount">0</strong>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Janji Temu</span>
+                                        <strong id="infoAppointmentCount">0</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-footer">
+                            <div class="info-footer-item">
+                                <i class="fas fa-code-branch"></i>
+                                <div>
+                                    <h4>Proyek Akademik</h4>
+                                    <p>Mata Kuliah Pemrograman Web 1</p>
+                                </div>
+                            </div>
+                            <div class="info-footer-item">
+                                <i class="fas fa-heart"></i>
+                                <div>
+                                    <h4>Dibuat dengan</h4>
+                                    <p>HTML5, CSS3, Vanilla JavaScript</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Reset Confirmation Modal -->
+    <div class="modal-overlay" id="resetModal">
+        <div class="modal-box modal-small">
+            <div class="modal-icon danger"><i class="fas fa-exclamation-triangle"></i></div>
+            <h3 class="modal-title">Konfirmasi Final Reset</h3>
+            <p class="modal-message">Anda akan menghapus <strong>SEMUA DATA</strong> sistem HMRIS. Tindakan ini tidak dapat dibatalkan!</p>
+            <div class="modal-warning-box">
+                <i class="fas fa-radiation"></i>
+                <span>Semua data akan hilang permanen!</span>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="btnCancelReset">Batal</button>
+                <button class="btn btn-danger" id="btnConfirmReset">
+                    <i class="fas fa-trash-alt"></i> Ya, Reset Semua
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div class="modal-overlay" id="restoreModal">
+        <div class="modal-box">
+            <div class="modal-icon warning"><i class="fas fa-upload"></i></div>
+            <h3 class="modal-title">Konfirmasi Restore</h3>
+            <p class="modal-message">Data saat ini akan <strong>diganti</strong> dengan data dari backup. Lanjutkan?</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="btnCancelRestoreModal">Batal</button>
+                <button class="btn btn-primary" id="btnConfirmRestore">
+                    <i class="fas fa-check"></i> Ya, Restore
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/pengaturan.js"></script>
+    <!-- Global Navbar Interactivity -->
+    <script src="../assets/js/navbar.js"></script>
+</body>
+</html>

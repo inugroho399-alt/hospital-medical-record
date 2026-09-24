@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Laporan - Hospital Medical Record Information System">
+    <title>Laporan - HMRIS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/laporan.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="dashboard/index.html" class="sidebar-logo">
+                <i class="fas fa-hospital"></i>
+                <span>HMR<span class="logo-highlight">IS</span></span>
+            </a>
+        </div>
+
+        <div class="role-badge-wrapper">
+            <div class="role-badge" id="roleBadge">
+                <i class="fas fa-user-circle"></i>
+                <span id="roleBadgeText">Role</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list" id="navList"></ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="btnLogoutSidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <div class="sidebar-copyright">
+                <small>&copy; 2024 HMRIS v1.0</small>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="main-wrapper">
+        <!-- ==================== TOP NAVBAR ==================== -->
+        <header class="top-navbar">
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Cari data laporan...">
+                </div>
+            </div>
+
+            <div class="navbar-right">
+                <button class="navbar-icon-btn" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+
+                <button class="navbar-icon-btn" aria-label="Messages">
+                    <i class="fas fa-envelope"></i>
+                    <span class="badge">5</span>
+                </button>
+
+                <div class="user-profile" id="userProfile">
+                    <div class="user-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">User Name</span>
+                        <span class="user-role" id="userRole">Role</span>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 id="dropdownName">User Name</h4>
+                                <p id="dropdownEmail">user@email.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="pengaturan.html?section=profile" class="dropdown-item"><i class="fas fa-user-circle"></i><span>Profil Saya</span></a>
+                        <a href="pengaturan.html" class="dropdown-item"><i class="fas fa-cog"></i><span>Pengaturan</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout" id="btnLogoutDropdown">
+                            <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ==================== CONTENT AREA ==================== -->
+        <main class="content-area">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <div class="page-header-left">
+                    <nav class="breadcrumb">
+                        <a href="dashboard/index.html"><i class="fas fa-home"></i> Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="active">Laporan</span>
+                    </nav>
+                    <h1 class="page-title">Laporan & Analitik</h1>
+                    <p class="page-subtitle">Ringkasan data rumah sakit dengan grafik dan statistik lengkap</p>
+                </div>
+                <div class="page-header-right">
+                    <button class="btn btn-outline" id="btnExportExcel">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Export Excel</span>
+                    </button>
+                    <button class="btn btn-outline" id="btnExportPDF">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Export PDF</span>
+                    </button>
+                    <button class="btn btn-primary" id="btnPrint">
+                        <i class="fas fa-print"></i>
+                        <span>Print Laporan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <section class="stats-section fade-in">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0077B6, #00B4D8)">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Pasien</div>
+                            <div class="stat-value" id="statTotalPasien">0</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> <span id="trendPasien">0%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #06D6A0, #2EC4B6)">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Dokter</div>
+                            <div class="stat-value" id="statTotalDokter">0</div>
+                            <div class="stat-trend up"><i class="fas fa-check-circle"></i> Aktif</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #7B2CBF, #9D4EDD)">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Rekam Medis</div>
+                            <div class="stat-value" id="statTotalRM">0</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> <span id="trendRM">0%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #FF6B35, #FFB347)">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Janji Temu</div>
+                            <div class="stat-value" id="statTotalJanji">0</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> <span id="trendJanji">0%</span></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #EF476F, #FF6B6B)">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-label">Pemeriksaan Lab</div>
+                            <div class="stat-value" id="statTotalLab">0</div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> <span id="trendLab">0%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filter Panel -->
+            <section class="filter-panel glass-card fade-in">
+                <div class="filter-header">
+                    <h3 class="filter-title">
+                        <i class="fas fa-filter"></i> Filter Laporan
+                    </h3>
+                    <button class="btn btn-sm btn-outline" id="btnResetFilter">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label>Tanggal Mulai</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="date" id="filterStartDate">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Tanggal Akhir</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="date" id="filterEndDate">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Bulan</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-calendar"></i>
+                            <select id="filterMonth">
+                                <option value="">Semua Bulan</option>
+                                <option value="0">Januari</option>
+                                <option value="1">Februari</option>
+                                <option value="2">Maret</option>
+                                <option value="3">April</option>
+                                <option value="4">Mei</option>
+                                <option value="5">Juni</option>
+                                <option value="6">Juli</option>
+                                <option value="7">Agustus</option>
+                                <option value="8">September</option>
+                                <option value="9">Oktober</option>
+                                <option value="10">November</option>
+                                <option value="11">Desember</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Tahun</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-calendar-week"></i>
+                            <select id="filterYear">
+                                <option value="">Semua Tahun</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Dokter</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user-md"></i>
+                            <select id="filterDoctor">
+                                <option value="">Semua Dokter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-toggle-on"></i>
+                            <select id="filterStatus">
+                                <option value="">Semua Status</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Menunggu">Menunggu</option>
+                                <option value="Diproses">Diproses</option>
+                                <option value="Dibatalkan">Dibatalkan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn btn-primary" id="btnApplyFilter">
+                        <i class="fas fa-search"></i>
+                        <span>Terapkan Filter</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section fade-in">
+                <div class="section-header">
+                    <h3 class="section-title"><i class="fas fa-chart-line"></i> Grafik Statistik</h3>
+                    <div class="chart-period">
+                        <button class="period-btn active" data-period="6">6 Bulan</button>
+                        <button class="period-btn" data-period="12">12 Bulan</button>
+                    </div>
+                </div>
+                <div class="charts-grid">
+                    <!-- Chart Pasien -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h4 class="chart-title"><i class="fas fa-users"></i> Total Pasien</h4>
+                            <span class="chart-total" id="chartTotalPasien">0</span>
+                        </div>
+                        <div class="chart-container">
+                            <svg class="bar-chart" id="chartPasien" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet"></svg>
+                        </div>
+                    </div>
+
+                    <!-- Chart Rekam Medis -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h4 class="chart-title"><i class="fas fa-file-medical"></i> Rekam Medis</h4>
+                            <span class="chart-total" id="chartTotalRM">0</span>
+                        </div>
+                        <div class="chart-container">
+                            <svg class="bar-chart" id="chartRM" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet"></svg>
+                        </div>
+                    </div>
+
+                    <!-- Chart Janji Temu -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h4 class="chart-title"><i class="fas fa-calendar-check"></i> Janji Temu</h4>
+                            <span class="chart-total" id="chartTotalJanji">0</span>
+                        </div>
+                        <div class="chart-container">
+                            <svg class="bar-chart" id="chartJanji" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet"></svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Report Tabs -->
+            <section class="report-section glass-card fade-in">
+                <div class="report-tabs">
+                    <button class="tab-btn active" data-tab="pasien">
+                        <i class="fas fa-users"></i>
+                        <span>Laporan Pasien</span>
+                        <span class="tab-count" id="countPasien">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="dokter">
+                        <i class="fas fa-user-md"></i>
+                        <span>Laporan Dokter</span>
+                        <span class="tab-count" id="countDokter">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="rekammedis">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Rekam Medis</span>
+                        <span class="tab-count" id="countRM">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="janjitemu">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Janji Temu</span>
+                        <span class="tab-count" id="countJanji">0</span>
+                    </button>
+                    <button class="tab-btn" data-tab="laboratorium">
+                        <i class="fas fa-flask"></i>
+                        <span>Laboratorium</span>
+                        <span class="tab-count" id="countLab">0</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="report-table-wrapper">
+                    <div class="report-toolbar">
+                        <div class="report-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="reportSearch" placeholder="Cari dalam laporan...">
+                        </div>
+                        <div class="report-info">
+                            Menampilkan <strong id="reportShowing">0</strong> data
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="reportTable">
+                            <thead id="reportTableHead"></thead>
+                            <tbody id="reportTableBody"></tbody>
+                        </table>
+                        <div class="empty-state" id="emptyState" style="display: none;">
+                            <i class="fas fa-inbox"></i>
+                            <h3>Tidak Ada Data</h3>
+                            <p>Belum ada data untuk laporan ini dengan filter yang dipilih</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="dashboard-footer">
+                <p>&copy; 2024 HMRIS — Hospital Medical Record Information System. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <script src="../assets/js/laporan.js"></script>
+    <!-- Global Navbar Interactivity -->
+    <script src="../assets/js/navbar.js"></script>
+</body>
+</html>

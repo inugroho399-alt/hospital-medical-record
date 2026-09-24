@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login - Hospital Medical Record Information System">
+    <title>Login - HMRIS</title>
+    <!-- Google Font Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/login.css">
+
+    <!-- Modern Executive Healthcare Design System -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="landing.html" class="nav-logo">
+                    <i class="fas fa-hospital"></i>
+                    <span>HMR<span class="logo-highlight">IS</span></span>
+                </a>
+                <div class="nav-auth">
+                    <span class="nav-text">Belum punya akun?</span>
+                    <a href="signup.html" class="btn btn-outline">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== LOGIN HERO SECTION ==================== -->
+    <section class="login-hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <div class="container login-container">
+            <!-- ==================== LOGIN INFO (LEFT) ==================== -->
+            <div class="login-info fade-in">
+                <span class="login-badge">
+                    <i class="fas fa-shield-alt"></i> Secure Login
+                </span>
+                <h1 class="login-title">
+                    Selamat Datang
+                    <span class="text-gradient">Kembali</span>
+                </h1>
+                <p class="login-description">
+                    Masuk ke akun HMRIS Anda untuk mengakses sistem informasi rekam medis rumah sakit yang modern dan terintegrasi.
+                </p>
+
+                <div class="login-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Multi-Role Access</h4>
+                            <p>Akses disesuaikan untuk Admin, Dokter, Perawat, Petugas RM, dan Pasien</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Keamanan Terjamin</h4>
+                            <p>Data Anda dilindungi dengan enkripsi dan autentikasi berlapis</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Akses Cepat</h4>
+                            <p>Dashboard interaktif dengan informasi real-time</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo Accounts Info -->
+                <div class="demo-info glass-card">
+                    <div class="demo-info-header">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Akun Demo</span>
+                    </div>
+                    <div class="demo-accounts">
+                        <div class="demo-account">
+                            <span class="demo-role admin">Admin</span>
+                            <code>admin / admin123</code>
+                        </div>
+                        <div class="demo-account">
+                            <span class="demo-role doctor">Dokter</span>
+                            <code>dokter / dokter123</code>
+                        </div>
+                        <div class="demo-account">
+                            <span class="demo-role nurse">Perawat</span>
+                            <code>perawat / perawat123</code>
+                        </div>
+                        <div class="demo-account">
+                            <span class="demo-role staff">Petugas RM</span>
+                            <code>petugas / petugas123</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== LOGIN FORM (RIGHT) ==================== -->
+            <div class="login-form-wrapper fade-in">
+                <form class="login-form glass-card" id="loginForm" novalidate>
+                    <div class="form-header">
+                        <div class="form-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h2 class="form-title">Masuk ke Akun Anda</h2>
+                        <p class="form-subtitle">Silakan masukkan kredensial Anda</p>
+                    </div>
+
+                    <!-- ==================== BLOCKED ALERT ==================== -->
+<div class="login-alert blocked-alert" id="blockedAlert" style="display: none;">
+    <div class="alert-icon danger">
+        <i class="fas fa-lock"></i>
+    </div>
+    <div class="alert-content">
+        <h4>Akun Sementara Diblokir</h4>
+        <p>Terlalu banyak percobaan login gagal. Silakan coba lagi dalam:</p>
+        <div class="countdown-timer" id="countdownTimer">
+            <div class="countdown-box">
+                <span class="countdown-value" id="countdownMinutes">15</span>
+                <span class="countdown-label">Menit</span>
+            </div>
+            <span class="countdown-separator">:</span>
+            <div class="countdown-box">
+                <span class="countdown-value" id="countdownSeconds">00</span>
+                <span class="countdown-label">Detik</span>
+            </div>
+        </div>
+        <small class="alert-hint">
+            <i class="fas fa-info-circle"></i>
+            Hubungi administrator jika Anda tidak merasa melakukan login
+        </small>
+    </div>
+</div>
+
+<!-- ==================== WARNING ALERT ==================== -->
+<div class="login-alert warning-alert" id="warningAlert" style="display: none;">
+    <div class="alert-icon warning">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <div class="alert-content">
+        <h4>Peringatan Keamanan</h4>
+        <p id="warningMessage">Password salah. Anda memiliki <strong id="remainingAttempts">2</strong> percobaan tersisa sebelum akun diblokir.</p>
+    </div>
+</div>
+
+                    <!-- Username / Email -->
+                    <div class="form-group">
+                        <label for="username">
+                            Username atau Email <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="Masukkan username atau email" 
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+                        <span class="error-message" id="error-username"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">
+                            Password <span class="required">*</span>
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Masukkan password" 
+                                autocomplete="current-password"
+                                required
+                            >
+                            <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="error-password"></span>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="form-options">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="rememberMe" name="rememberMe">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">Ingat saya</span>
+                        </label>
+                        <a href="#" class="forgot-link">Lupa password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block btn-submit" id="btnSubmit">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Masuk</span>
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="form-divider">
+                        <span>atau</span>
+                    </div>
+
+                    <!-- Sign Up Link -->
+                    <p class="form-footer">
+                        Belum punya akun pasien? <a href="signup.html" class="link">Daftar di sini</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer-simple">
+        <div class="container">
+            <p>&copy; 2024 HMRIS — Hospital Medical Record Information System</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="assets/js/login.js"></script>
+</body>
+</html>
