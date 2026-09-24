@@ -404,44 +404,7 @@
     });
 
     console.log('✅ Sidebar rendered successfully');
-}renderSidebar() {
-    const role = (this.currentUser.role || '').toLowerCase();
-    const config = ROLE_CONFIG[role] || ROLE_CONFIG.admin;
-    const navList = document.getElementById('navList');
-    navList.innerHTML = '';
-
-    config.menus.forEach(item => {
-        if (item.category) {
-            const el = document.createElement('li');
-            el.className = 'nav-category';
-            el.textContent = item.category;
-            navList.appendChild(el);
-        } else {
-            const menuItem = document.createElement('li');
-            menuItem.className = 'nav-item';
-            const link = document.createElement('a');
-            link.href = item.href || '#';
-            link.className = 'nav-link' + (item.active ? ' active' : '');
-            link.dataset.href = item.href || '#';
-            link.innerHTML = `
-                <i class="fas ${item.icon}"></i>
-                <span>${item.name}</span>
-                ${item.badge ? `<span class="nav-badge">${item.badge}</span>` : ''}
-            `;
-
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const finalHref = link.dataset.href || link.getAttribute('href') || item.href;
-                console.log('🖱️ Menu clicked:', item.name, '| href:', finalHref);
-                this.handleMenuClick(item.name, finalHref);
-            });
-
-            menuItem.appendChild(link);
-            navList.appendChild(menuItem);
         }
-    });
-}
 
         bindEvents() {
             // Sidebar toggle
