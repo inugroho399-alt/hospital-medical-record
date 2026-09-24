@@ -1,9 +1,13 @@
 # 🏥 HMRIS — Hospital Medical Record Information System
 
+[![Academic Project](https://img.shields.io/badge/Tugas-UAS%20Pemrograman%20Web%201-2563EB?style=for-the-badge)](https://github.com/inugroho399-alt/hospital-medical-record)
 [![Status](https://img.shields.io/badge/Status-Active%20Production%20Ready-0D9488?style=for-the-badge)](https://github.com/inugroho399-alt/hospital-medical-record)
 [![Tech Stack](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20ES6%2B%20JS-0F172A?style=for-the-badge)](https://github.com/inugroho399-alt/hospital-medical-record)
 [![Design](https://img.shields.io/badge/Design-Clinical%20Teal%20%26%20Slate-0D9488?style=for-the-badge)](https://github.com/inugroho399-alt/hospital-medical-record)
 [![Tests](https://img.shields.io/badge/Tests-30%2F30%20Passed%20(100%25)-059669?style=for-the-badge)](https://github.com/inugroho399-alt/hospital-medical-record)
+
+> [!NOTE]
+> **Proyek Akademik**: Repositori ini dikembangkan sebagai pemenuhan **Tugas Ujian Akhir Semester (UAS) Mata Kuliah Pemrograman Web 1**.
 
 **HMRIS** (*Hospital Medical Record Information System*) adalah sistem informasi manajemen rumah sakit dan rekam medis elektronik (RME) modern berbasis web. Sistem ini dirancang dengan standar antarmuka klinis profesional (**Clinical Teal & Deep Slate**), arsitektur modular tanpa ketergantungan framework berat (*Zero-dependency Vanilla Web Architecture*), serta sistem **Role-Based Access Control (RBAC)** ketat untuk menjamin keamanan dan isolasi data medis pasien.
 
@@ -11,6 +15,7 @@
 
 ## 📑 Daftar Isi
 
+- [🎓 Informasi Akademik](#-informasi-akademik)
 - [✨ Fitur Utama](#-fitur-utama)
 - [👥 Matriks Hak Akses Peran (RBAC)](#-matriks-hak-akses-peran-rbac)
 - [🔑 Kredensial Akun Demo](#-kredensial-akun-demo)
@@ -20,6 +25,20 @@
 - [🧪 Pengujian Otomatis (Automated Tests)](#-pengujian-otomatis-automated-tests)
 - [🔒 Keamanan & Isolasi Data](#-keamanan--isolasi-data)
 - [📄 Lisensi](#-lisensi)
+
+---
+
+## 🎓 Informasi Akademik
+
+Dokumentasi dan repositori ini disusun untuk memenuhi tugas akademik:
+- **Mata Kuliah**: Pemrograman Web 1
+- **Jenis Evaluasi**: Ujian Akhir Semester (UAS)
+- **Topik / Judul Proyek**: *Hospital Medical Record Information System* (HMRIS) — Sistem Informasi Manajemen Rumah Sakit & Rekam Medis Elektronik
+- **Teknologi yang Digunakan**: 
+  - **Struktur**: HTML5 Semantik
+  - **Gaya & Desain**: Modern CSS3 (CSS Variables, Flexbox, CSS Grid, Responsive Design)
+  - **Logika & Pemrograman**: Vanilla JavaScript (ES6+ Class, Event Handling, DOM Manipulation, LocalStorage Management)
+  - **Pengujian**: Automated Unit & E2E Testing Suite (Node.js)
 
 ---
 
