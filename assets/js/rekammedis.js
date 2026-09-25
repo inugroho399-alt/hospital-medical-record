@@ -265,7 +265,7 @@
             const user = Storage.get(Storage.KEYS.CURRENT_USER);
             if (!user) {
                 UI.showToast('Silakan login terlebih dahulu!', 'error');
-                setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+                setTimeout(() => { window.location.href = '../login.html'; }, 1000);
                 return false;
             }
             this.currentUser = user;
@@ -1357,7 +1357,7 @@
         logout() {
             Storage.remove(Storage.KEYS.CURRENT_USER);
             UI.showToast('Logout berhasil! Mengalihkan...', 'success');
-            setTimeout(() => { window.location.href = '../index.html'; }, 1000);
+            setTimeout(() => { window.location.href = '../login.html'; }, 1000);
         }
 
         // ==================== EXPORT ====================

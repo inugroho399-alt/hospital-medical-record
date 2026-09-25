@@ -331,7 +331,7 @@
             if (!user) {
                 UI.showToast('Silakan login terlebih dahulu!', 'error');
                 setTimeout(() => {
-                    window.location.href = '../index.html';
+                    window.location.href = '../login.html';
                 }, 1000);
                 return false;
             }
@@ -1304,7 +1304,7 @@
             Storage.remove(Storage.KEYS.CURRENT_USER);
             UI.showToast('Logout berhasil! Mengalihkan...', 'success');
             setTimeout(() => {
-                window.location.href = '../index.html';
+                window.location.href = '../login.html';
             }, 1000);
         }
 
